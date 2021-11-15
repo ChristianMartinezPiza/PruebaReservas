@@ -81,24 +81,24 @@ class Reservas
         return $this;
     }
 
-    public function getEntrada(): ?\DateTimeInterface
+    public function getEntrada(): ?string
     {
         return $this->entrada;
     }
 
-    public function setEntrada(\DateTimeInterface $entrada): self
+    public function setEntrada(string $entrada): self
     {
         $this->entrada = $entrada;
 
         return $this;
     }
 
-    public function getSalida(): ?\DateTimeInterface
+    public function getSalida(): ?string
     {
         return $this->salida;
     }
 
-    public function setSalida(\DateTimeInterface $salida): self
+    public function setSalida(string $salida): self
     {
         $this->salida = $salida;
 
@@ -134,10 +134,33 @@ class Reservas
         return $this->acciones;
     }
 
-    public function setAcciones(?string $acciones): self
+    public function setAcciones(string $acciones): self
     {
         $this->acciones = $acciones;
 
         return $this;
     }
+
+    public function actualizarReservas(){
+        $fila=0;
+        $archivo=fopen("http://tech-test.wamdev.net/", "r");
+            while(($registro = fgetcsv($archivo, 1000, ";")) !== false){
+                $num = count($registro);
+                for($columna = 0; $columna<$num; $columna++){
+                    $datos[$columna] = $registro[$columna];
+                }
+                if (count($datos)>2) {
+                    $reserva = new Reservas();
+                    $reserva->setLocalizador(intval($datos[0]));
+                    $reserva->setHuesped($datos[1]);
+                    $reserva->setEntrada($datos[2]);
+                    $reserva->setSalida($datos[3]);
+                    $reserva->setHotel($datos[4]);
+                    $reserva->setPrecio(floatval($datos[5]));
+                    $reserva->setAcciones($datos[6]);
+                }
+                $fila++;
+            }
+        fclose($archivo);
+        }
 }
