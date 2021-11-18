@@ -8,16 +8,12 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=ReservasRepository::class)
  */
-class Reservas
+class Reservas implements \JsonSerializable
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+
 
     /**
+     * * @ORM\Id
      * @ORM\Column(type="integer", unique=true)
      */
     private $localizador;
@@ -52,10 +48,6 @@ class Reservas
      */
     private $acciones;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getLocalizador(): ?int
     {
@@ -166,4 +158,11 @@ class Reservas
         fclose($archivo);
             return $reservas;
         }
+
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
+
+        return $vars;
+    }
 }

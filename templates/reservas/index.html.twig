@@ -9,6 +9,7 @@
 </style>
 
 <div class="example-wrapper">
+    <a href="http://localhost/pruebareservas/public/reservas.json" download>Descargar reservas</a>
     <table>
     <tr>
         <td>Localizador</td>
@@ -19,7 +20,7 @@
         <td>Precio</td>
         <td>Posibles acciones</td>
     </tr>
-    {% for reserva in reservas %}
+        {% for reserva in reservas %}
         <tr>
             <td>{{ reserva.getLocalizador() }}</td>
             <td>{{ reserva.getHuesped() }}</td>

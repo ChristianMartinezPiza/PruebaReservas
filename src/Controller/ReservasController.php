@@ -16,9 +16,11 @@ class ReservasController extends AbstractController
     {
         $reservas = new Reservas();
         $reservasArray = $reservas->actualizarReservas();
+        $reservasJson = json_encode($reservasArray);
+        file_put_contents('reservas.json', $reservasJson);
         return $this->render('reservas/index.html.twig', [
             'reservas' => $reservasArray,
-            'reserva' => Reservas::class
+            'json' => $reservasJson,
         ]);
     }
 }
