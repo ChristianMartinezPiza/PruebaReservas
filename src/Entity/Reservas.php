@@ -143,6 +143,7 @@ class Reservas
 
     public function actualizarReservas(){
         $fila=0;
+        $reservas = array();
         $archivo=fopen("http://tech-test.wamdev.net/", "r");
             while(($registro = fgetcsv($archivo, 1000, ";")) !== false){
                 $num = count($registro);
@@ -158,9 +159,11 @@ class Reservas
                     $reserva->setHotel($datos[4]);
                     $reserva->setPrecio(floatval($datos[5]));
                     $reserva->setAcciones($datos[6]);
+                    array_push($reservas, $reserva);
                 }
                 $fila++;
             }
         fclose($archivo);
+            return $reservas;
         }
 }

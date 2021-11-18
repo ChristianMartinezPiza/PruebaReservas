@@ -9,12 +9,27 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/prueba/src/Controller/ReservasController.php'|file_link(0) }}">src/Controller/ReservasController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/prueba/templates/reservas/index.html.twig'|file_link(0) }}">templates/reservas/index.html.twig</a></code></li>
-    </ul>
+    <table>
+    <tr>
+        <td>Localizador</td>
+        <td>Huésped</td>
+        <td>Fecha de entrada</td>
+        <td>Fecha de salida</td>
+        <td>Hotel</td>
+        <td>Precio</td>
+        <td>Posibles acciones</td>
+    </tr>
+    {% for reserva in reservas %}
+        <tr>
+            <td>{{ reserva.getLocalizador() }}</td>
+            <td>{{ reserva.getHuesped() }}</td>
+            <td>{{ reserva.getEntrada() }}</td>
+            <td>{{ reserva.getSalida() }}</td>
+            <td>{{ reserva.getHotel() }}</td>
+            <td>{{ reserva.getPrecio() }}</td>
+            <td>{{ reserva.getAcciones() }}</td>
+        </tr>
+    {% endfor %}
+    </table>
 </div>
 {% endblock %}

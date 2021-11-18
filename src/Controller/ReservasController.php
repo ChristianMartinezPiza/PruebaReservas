@@ -15,9 +15,10 @@ class ReservasController extends AbstractController
     public function index(): Response
     {
         $reservas = new Reservas();
-        $reservas->actualizarReservas();
+        $reservasArray = $reservas->actualizarReservas();
         return $this->render('reservas/index.html.twig', [
-            'controller_name' => 'ReservasController',
+            'reservas' => $reservasArray,
+            'reserva' => Reservas::class
         ]);
     }
 }
