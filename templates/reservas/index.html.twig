@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ReservasController!{% endblock %}
+{% block title %}Reservas{% endblock %}
+
 
 {% block body %}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
-
 <div class="example-wrapper">
-    <a href="http://localhost/pruebareservas/public/reservas.json" download>Descargar reservas</a>
-    <table>
+    <a href="../../public/reservas.json" download>Descargar reservas</a>
+    {{ form(busqueda) }}
+    <table id="reserva">
     <tr>
         <td>Localizador</td>
         <td>Huésped</td>
@@ -20,7 +21,7 @@
         <td>Precio</td>
         <td>Posibles acciones</td>
     </tr>
-        {% for reserva in reservas %}
+        {% for reserva in filtrado %}
         <tr>
             <td>{{ reserva.getLocalizador() }}</td>
             <td>{{ reserva.getHuesped() }}</td>
