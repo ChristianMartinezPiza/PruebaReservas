@@ -16,8 +16,8 @@ class reservasTest extends WebTestCase
         $reservas = new Reservas();
         $reservasArray = $reservas->actualizarReservas();
         $reservasJson = json_encode($reservasArray);
-        file_put_contents('reservas.json', $reservasJson);
+        file_put_contents('public/reservas.json', $reservasJson);
         $this->assertGreaterThan(2, $reservasArray);
-        $this->assertFileExists('reservas.json');
+        $this->assertFileExists('public/reservas.json');
     }
 }
